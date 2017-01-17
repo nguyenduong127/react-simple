@@ -18,7 +18,7 @@ import createStore from 'redux/create';
 import ApiClient from 'helpers/ApiClient';
 import Html from 'helpers/Html';
 import getRoutes from 'routes';
-// import { exposeInitialRequest } from 'app';
+import { exposeInitialRequest } from 'app';
 
 const targetUrl = `http://${config.apiHost}:${config.apiPort}`;
 const pretty = new PrettyError();
