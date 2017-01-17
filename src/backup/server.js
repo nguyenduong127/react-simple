@@ -43,17 +43,17 @@ app.use((req, res, next) => {
 });
 
 // Proxy to API server
-// app.use('/api', (req, res) => {
-//   proxy.web(req, res, { target: targetUrl });
-// });
-//
-// app.use('/ws', (req, res) => {
-//   proxy.web(req, res, { target: `${targetUrl}/ws` });
-// });
-//
-// server.on('upgrade', (req, socket, head) => {
-//   proxy.ws(req, socket, head);
-// });
+app.use('/api', (req, res) => {
+  proxy.web(req, res, { target: targetUrl });
+});
+
+app.use('/ws', (req, res) => {
+  proxy.web(req, res, { target: `${targetUrl}/ws` });
+});
+
+server.on('upgrade', (req, socket, head) => {
+  proxy.ws(req, socket, head);
+});
 
 // added the error handling to avoid https://github.com/nodejitsu/node-http-proxy/issues/527
 proxy.on('error', (error, req, res) => {
@@ -89,7 +89,7 @@ app.use((req, res) => {
   }
 
   // Re-configure restApp for apply client cookies
-  // exposeInitialRequest(req);
+  exposeInitialRequest(req);
 
   match({
     history,
