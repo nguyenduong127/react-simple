@@ -20,8 +20,8 @@
       "env": {
         "NODE_PATH": "./src",
         "NODE_ENV": "production",
-        "PORT": 8080,
-        "APIPORT": 3030
+        "PORT": 3000,
+        "APIPORT": 8080
       }
     },
     "start-dev": {
@@ -30,7 +30,7 @@
         "NODE_PATH": "./src",
         "NODE_ENV": "development",
         "PORT": 3000,
-        "APIPORT": 3030,
+        "APIPORT": 8080,
         "WEBPACK_DLLS": 1
       }
     },
@@ -41,7 +41,7 @@
         "NODE_PATH": "./src",
         "NODE_ENV": "development",
         "PORT": 3000,
-        "APIPORT": 3030,
+        "APIPORT": 8080,
         "WEBPACK_DLLS": 1
       }
     },

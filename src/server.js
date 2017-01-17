@@ -18,16 +18,17 @@ import createStore from 'redux/create';
 import ApiClient from 'helpers/ApiClient';
 import Html from 'helpers/Html';
 import getRoutes from 'routes';
-import { exposeInitialRequest } from 'app';
+// import { exposeInitialRequest } from 'app';
 
 const targetUrl = `http://${config.apiHost}:${config.apiPort}`;
 const pretty = new PrettyError();
 const app = express();
 const server = new http.Server(app);
-const proxy = httpProxy.createProxyServer({
-  target: targetUrl,
-  ws: true
-});
+
+// const proxy = httpProxy.createProxyServer({
+//   target: targetUrl,
+//   ws: true
+// });
 
 app.use(cookieParser());
 app.use(compression());
@@ -56,17 +57,17 @@ app.use((req, res, next) => {
 // });
 
 // added the error handling to avoid https://github.com/nodejitsu/node-http-proxy/issues/527
-proxy.on('error', (error, req, res) => {
-  if (error.code !== 'ECONNRESET') {
-    console.error('proxy error', error);
-  }
-  if (!res.headersSent) {
-    res.writeHead(500, { 'content-type': 'application/json' });
-  }
-
-  const json = { error: 'proxy_error', reason: error.message };
-  res.end(JSON.stringify(json));
-});
+// proxy.on('error', (error, req, res) => {
+//   if (error.code !== 'ECONNRESET') {
+//     console.error('proxy error', error);
+//   }
+//   if (!res.headersSent) {
+//     res.writeHead(500, { 'content-type': 'application/json' });
+//   }
+//
+//   const json = { error: 'proxy_error', reason: error.message };
+//   res.end(JSON.stringify(json));
+// });
 
 app.use((req, res) => {
   if (__DEVELOPMENT__) {
